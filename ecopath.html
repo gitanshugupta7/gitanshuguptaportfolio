@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EcoPath · Gitanshu Gupta</title>
+  <meta name="description" content="Case study: designing and building ecopath.earth for a cement-free construction startup, centred on a carbon calculator that turns abstract emissions savings into a number clients can act on." />
+  <meta property="og:title" content="EcoPath · web design and build case study" />
+  <meta property="og:description" content="A carbon calculator, a clear products-versus-services structure, and a full marketing site for a startup decarbonizing road construction." />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { paper: '#ffffff', warm: '#f4f4f7', ink: '#18181a', muted: '#46464e', faint: '#9090a0', line: '#e4e4ec' },
+        fontFamily: { display: ['"DM Serif Display"', 'Georgia', 'serif'], sans: ['"DM Sans"', 'system-ui', 'sans-serif'] },
+        maxWidth: { content: '72rem', read: '46rem' },
+      } },
+    };
+  </script>
+  <style>
+    /* This case study's brand color (EcoPath's real deep green). Change to re-theme. */
+    :root { --brand: #17411a; }
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    html { scroll-padding-top: 5rem; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    .label   { letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 600; }
+    .kicker  { letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 600; color: var(--brand); }
+    .bt      { color: var(--brand); }
+    .rule::after { content: ""; flex: 1; height: 1px; background: #e4e4ec; }
+    .thi-tag { letter-spacing: .14em; text-transform: uppercase; font-size: .68rem; color: #9090a0; }
+    .bq      { border-left: 3px solid var(--brand); }
+    .make    { background: color-mix(in srgb, var(--brand) 5%, #fff); border: 1px dashed color-mix(in srgb, var(--brand) 35%, #cfcfd6); border-radius: 12px; }
+    .make .label { color: var(--brand); }
+    .impl    { background: color-mix(in srgb, var(--brand) 9%, #fff); border: 1px solid color-mix(in srgb, var(--brand) 24%, #fff); }
+    .impl .label { color: var(--brand); }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: color-mix(in srgb, var(--brand) 85%, #000); }
+    .stat-num { color: var(--brand); }
+    .chip { font-size: 12px; border: 1px solid var(--brand); color: var(--brand); border-radius: 999px; padding: 4px 12px; }
+    .prose-body p { line-height: 1.78; color: #2b2b2b; }
+    .prose-body p + p { margin-top: 1.1rem; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 2px; }
+  </style>
+</head>
+ 
+<body class="bg-paper text-ink font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+ 
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
+    <nav class="mx-auto max-w-content px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+      <a href="index.html" class="text-[15px] font-medium tracking-tight hover:text-[color:var(--brand)] transition-colors">Gitanshu Gupta</a>
+      <div class="hidden md:flex items-center gap-8 text-[14px] text-muted">
+        <a href="index.html#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="index.html#about" class="hover:text-ink transition-colors">About</a>
+        <a href="index.html#contact" class="hover:text-ink transition-colors">Contact</a>
+        <a href="#" class="border border-line rounded-full px-4 py-1.5 text-ink hover:border-ink transition-colors">Résumé</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-line bg-paper">
+      <div class="px-5 py-3 flex flex-col text-[15px]">
+        <a href="index.html#work" class="py-2.5 border-b border-line/70">Work</a>
+        <a href="index.html#about" class="py-2.5 border-b border-line/70">About</a>
+        <a href="index.html#contact" class="py-2.5 border-b border-line/70">Contact</a>
+        <a href="#" class="py-2.5">Résumé</a>
+      </div>
+    </div>
+  </header>
+ 
+  <main id="main" class="mx-auto max-w-read px-5 sm:px-6">
+    <a href="index.html#work" class="inline-flex items-center gap-2 text-[13px] text-muted hover:text-ink transition-colors mt-10">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Selected work
+    </a>
+ 
+    <article>
+      <header class="pt-8 pb-10 border-b border-line">
+        <p class="kicker mb-5">Web design &amp; build · live</p>
+        <h1 class="font-display text-[2.3rem] sm:text-[3.1rem] leading-[1.1]">EcoPath</h1>
+        <p class="mt-5 text-[1.1rem] sm:text-[1.2rem] leading-relaxed text-muted">
+          A startup decarbonizing road construction with cement-free concrete, and a website built so its single hardest job, proving the impact, happens in the visitor's own hands.
+        </p>
+        <figure class="mt-8">
+          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-2xl flex items-center justify-center text-muted"><span class="label">Hero / homepage screenshot</span></div>
+        </figure>
+        <dl class="mt-9 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
+          <div><dt class="label text-faint mb-1.5">Role</dt><dd class="text-[0.95rem]">Designed &amp; built the website</dd></div>
+          <div><dt class="label text-faint mb-1.5">Timeline</dt><dd class="text-[0.95rem]">[Add timeline]</dd></div>
+          <div><dt class="label text-faint mb-1.5">Sector</dt><dd class="text-[0.95rem]">Sustainable construction</dd></div>
+          <div><dt class="label text-faint mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Tailwind · HTML · CSS</dd></div>
+          <div><dt class="label text-faint mb-1.5">Recognition</dt><dd class="text-[0.95rem]">TiE50 2026 winner</dd></div>
+          <div><dt class="label text-faint mb-1.5">Live</dt><dd class="text-[0.95rem]"><a href="https://ecopath.earth" class="bt underline underline-offset-2">ecopath.earth</a></dd></div>
+        </dl>
+        <a href="https://ecopath.earth" class="btn-brand mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium transition-colors">
+          Visit the live site
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+        <nav class="mt-9 flex flex-wrap gap-2" aria-label="On this page">
+          <a href="#overview" class="chip">Overview</a>
+          <a href="#problem" class="chip">The problem</a>
+          <a href="#research" class="chip">Research</a>
+          <a href="#audience" class="chip">Audience</a>
+          <a href="#ia" class="chip">Architecture</a>
+          <a href="#calculator" class="chip">The calculator</a>
+          <a href="#build" class="chip">Build</a>
+          <a href="#impact" class="chip">Impact</a>
+        </nav>
+      </header>
+ 
+      <!-- OVERVIEW -->
+      <section class="py-14 prose-body" id="overview">
+        <p class="kicker mb-3">Overview</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">A company whose product is invisible until you can measure it</h2>
+        <p>EcoPath builds roads and concrete products without cement, cutting the carbon, water, and waste of construction by a large margin. I designed and built its website end to end. The brief sounds like a normal marketing site, but it hides a difficult problem: the product's value is an environmental number, and numbers do not sell themselves. The work was about making that number believable and felt, not just stated.</p>
+      </section>
+ 
+      <!-- PROBLEM -->
+      <section class="py-14 prose-body border-t border-line" id="problem">
+        <p class="kicker mb-3">The problem</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Green is an easy claim and a hard sell</h2>
+        <p class="thi-tag mb-7">↳ THI · Studiendesign &amp; UX-Tests</p>
+        <p>Every construction supplier now claims to be sustainable, so the word has lost its weight. EcoPath's savings are real and large, around 75 to 80 per cent less CO2 than traditional concrete, roughly 30 per cent less water, and over ten thousand tonnes of industrial waste reused. But a developer reading those figures has two fair questions the brand has to answer before a sale: can I trust this, and what would it actually mean for my project. A page of bold percentages answers neither.</p>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">A trust funnel showing where green claims lose the buyer: <span class="bt">claim seen → is it credible? → does it apply to my project? → worth a conversation</span>. Show most generic sites dropping the buyer at steps two and three, and EcoPath's site carrying them through with proof and the calculator.</p>
+          </div>
+        </figure>
+      </section>
+ 
+      <!-- RESEARCH -->
+      <section class="py-14 prose-body border-t border-line" id="research">
+        <p class="kicker mb-3">Research</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">How a buyer actually judges a sustainability claim</h2>
+        <p class="thi-tag mb-7">↳ THI · Gestaltung 1 · Studiendesign &amp; UX-Tests</p>
+        <p>This was desk and category research rather than user interviews, so I am describing what shaped the design, not invented findings. Two things drove the decisions.</p>
+        <p><span class="font-medium text-ink">Credibility comes from specifics.</span> Industrial buyers discount round marketing numbers and trust concrete evidence: named projects, real clients, third-party recognition, and figures tied to a real job. EcoPath had all of these, so the site had to foreground them rather than adjectives.</p>
+        <p><span class="font-medium text-ink">Abstract figures do not move people.</span> A quantity like twelve tonnes of CO2 is meaningless to most readers because they have no reference for it. The research pointed toward translating impact into units people already understand, which became the core idea of the calculator later.</p>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create · 1 of 2</p>
+            <p class="text-[0.95rem] text-ink/80">A side-by-side comparison of <span class="bt">EcoConcrete vs traditional concrete</span> across four measures: CO2, water use, industrial waste, and road lifespan. Four paired bars or a clean two-column table with the real figures from the site.</p>
+          </div>
+        </figure>
+        <figure class="mt-4">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create · 2 of 2</p>
+            <p class="text-[0.95rem] text-ink/80">A short category scan: three or four typical construction or sustainability sites, in a small grid, showing <span class="bt">what they show (claims, photos) vs what they leave out (project-specific proof)</span>, and where EcoPath chose to go further.</p>
+          </div>
+        </figure>
+        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">If you have it</p><p class="text-[0.98rem] text-ink/90">If you spoke to any EcoPath clients or sales staff about what convinces buyers, a couple of real quotes here would lift this section from sound reasoning to evidence.</p></div>
+      </section>
+ 
+      <!-- AUDIENCE -->
+      <section class="py-14 prose-body border-t border-line" id="audience">
+        <p class="kicker mb-3">Audience</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">Three buyers, three different questions</h2>
+        <p>The site speaks to distinct buyer types, and each arrives with a different first question. These are grounded in EcoPath's real clientele, not interviewed personas.</p>
+        <div class="grid sm:grid-cols-3 gap-4 mt-6 not-prose">
+          <div class="border border-line rounded-2xl p-5">
+            <p class="font-display text-[1.2rem] leading-tight">Residential developer</p>
+            <p class="text-[0.9rem] text-ink/80 mt-2">Building a layout or estate. Asks: will this look and last as well as conventional roads, and what does it cost me?</p>
+          </div>
+          <div class="border border-line rounded-2xl p-5">
+            <p class="font-display text-[1.2rem] leading-tight">Commercial &amp; infra</p>
+            <p class="text-[0.9rem] text-ink/80 mt-2">Larger projects and institutions. Asks: can one vendor handle the whole road, at scale, on time?</p>
+          </div>
+          <div class="border border-line rounded-2xl p-5">
+            <p class="font-display text-[1.2rem] leading-tight">Government &amp; ESG-led</p>
+            <p class="text-[0.9rem] text-ink/80 mt-2">Public or sustainability-mandated buyers. Asks: can the environmental impact be quantified and defended?</p>
+          </div>
+        </div>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">A segmentation graphic of these <span class="bt">three buyer types</span>, each with their core question and the part of the site that answers it (projects for trust, services for scale, the calculator for quantified impact).</p>
+          </div>
+        </figure>
+      </section>
+ 
+      <!-- IA -->
+      <section class="py-14 prose-body border-t border-line" id="ia">
+        <p class="kicker mb-3">Information architecture</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Separating what you buy from what you hire</h2>
+        <p class="thi-tag mb-7">↳ THI · Webdesign &amp; Webusability</p>
+        <p>The key structural decision was to stop treating EcoPath as one thing. It sells cement-free <span class="font-medium text-ink">products</span>, ready-mix EcoConcrete, pavers, bricks and blocks, precast units, and it provides <span class="font-medium text-ink">services</span>, like soil stabilisation and building an entire road. Those are two different intents: buy a material, or hire a contractor. Folding them together would force every visitor through the half that did not apply to them.</p>
+        <p>So Products and Services got their own dedicated pages, grouped under a What We Do menu with a separate Our Projects page carrying the proof. Each visitor self-selects in one click, and each offering gets room to be explained on its own terms.</p>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">A split diagram: one path labelled <span class="bt">"I want to buy a material"</span> leading to Products, the other <span class="bt">"I want my road built"</span> leading to Services, both supported by Projects. Plus a simple sitemap of the full structure (Home, What We Do, Sustainability, About, Blog, Contact).</p>
+          </div>
+        </figure>
+      </section>
+ 
+      <!-- CALCULATOR -->
+      <section class="py-14 prose-body border-t border-line" id="calculator">
+        <p class="kicker mb-3">The impact calculator</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Turning tonnes into trees</h2>
+        <p class="thi-tag mb-7">↳ THI · Design von MMI · Webtechnologien</p>
+        <p>The calculator is the centre of the site, and the answer to the problem the research surfaced. Rather than tell a visitor that EcoConcrete saves carbon in general, it lets them describe their own project and shows what it would save in particular.</p>
+        <p>A visitor picks a product, a solid block, paver, kerbstone, saucer drain, U-drain, precast slab, boundary wall panel, or precast road, optionally sets a grade from M7.5 to M40, enters dimensions and quantity, and calculates. It returns three figures against the traditional equivalent: CO2 saved, water saved, and industrial waste reused.</p>
+        <figure class="mt-7">
+          <div class="aspect-[16/10] bg-warm border-2 border-dashed border-line rounded-xl flex flex-col items-center justify-center text-muted gap-1">
+            <span class="label">Screenshot</span><span class="text-[12px]">the calculator input form (product, grade, dimensions, quantity)</span>
+          </div>
+        </figure>
+        <figure class="mt-4">
+          <div class="aspect-[16/10] bg-warm border-2 border-dashed border-line rounded-xl flex flex-col items-center justify-center text-muted gap-1">
+            <span class="label">Screenshot or short clip</span><span class="text-[12px]">the results: CO2, water, waste, then the real-world equivalences</span>
+          </div>
+        </figure>
+      </section>
+ 
+      <!-- DESIGN DECISION -->
+      <section class="py-14 prose-body border-t border-line" id="decision">
+        <p class="kicker mb-3">The design decision</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">From a number nobody feels to one they do</h2>
+        <p>The first instinct was to show the raw savings and stop there: so many tonnes of CO2, so many litres of water. Accurate, and almost inert. A developer reading "twelve tonnes of CO2" has no felt sense of whether that is a little or a lot.</p>
+        <p>The reframe was to express the same figure in units people carry intuition for: trees planted in a year, kilometres of car travel avoided, smartphone charges, and days of household water for urban and rural homes. Nothing about the underlying number changes. What changes is whether the reader feels it. That single translation is what turns the calculator from an information widget into something persuasive, and it is the design idea I am most pleased with.</p>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">A before-and-after: on the left a flat figure (<span class="bt">"12 t CO2 saved"</span>); on the right the same value as icons, trees, a car with kilometres, water drops with days. Show the move from abstract to tangible. This is the signature graphic of the case study, worth the most effort.</p>
+          </div>
+        </figure>
+        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">If you tested it</p><p class="text-[0.98rem] text-ink/90">If you ever showed both versions to anyone and saw the equivalences land better, add that here. If not, this stands fine as design reasoning, just keep it framed that way.</p></div>
+      </section>
+ 
+      <!-- BUILD -->
+      <section class="py-14 prose-body border-t border-line" id="build">
+        <p class="kicker mb-3">Build</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Keeping a data tool simple on the surface</h2>
+        <p class="thi-tag mb-7">↳ THI · Webtechnologien</p>
+        <p>The site runs on Django with a Postgres database, and Tailwind, HTML, and CSS on the front end. The calculator's per-product emission, water, and waste factors live on the backend, with the form and live results on the front end, so the visitor sees a few simple inputs while the comparison logic stays hidden. The wider site is a full build: the dedicated products, services, and projects pages, sustainability, about, a blog, and contact, with optimised imagery for performance.</p>
+        <figure class="mt-6">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">A simple architecture diagram of the calculator: <span class="bt">inputs (form) → Django compares against a traditional baseline using per-product factors → outputs (CO2, water, waste) → equivalences</span>. Keep it three or four boxes, not a full system map.</p>
+          </div>
+        </figure>
+        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">Confirm</p><p class="text-[0.98rem] text-ink/90">Adjust the stack and the calculator's data source to exactly how you built it, and add one genuinely interesting technical detail if there is one.</p></div>
+      </section>
+ 
+      <!-- QUALITY -->
+      <section class="py-14 prose-body border-t border-line" id="quality">
+        <p class="kicker mb-3">Quality</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">Making the numbers trustworthy</h2>
+        <p>For a tool whose whole value is being believed, the quality bar is accuracy and clarity: the calculator's outputs have to be right and legible, and the site has to hold up responsively across devices and stay fast despite heavy imagery. That was the focus of testing.</p>
+        <div class="impl mt-4 rounded-xl p-5"><p class="label mb-2">Add if it applies</p><p class="text-[0.98rem] text-ink/90">If the figures were checked against EcoPath's engineering data, say so here, that is a strong credibility point. If you gathered any user or client feedback on the calculator, add it. Otherwise this can stay focused on accuracy and performance QA.</p></div>
+      </section>
+ 
+      <!-- IMPACT -->
+      <section class="py-14 prose-body border-t border-line" id="impact">
+        <p class="kicker mb-3">Impact</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">Recognition, and roads on the ground</h2>
+        <p>EcoPath was named a TiE50 2026 winner, recognised among the top fifty startups globally for its work decarbonizing construction. The site backs that standing with delivered projects rather than promises. These are EcoPath's company achievements, which the website is built to represent and support.</p>
+        <div class="grid sm:grid-cols-2 gap-5 mt-6 not-prose">
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.3rem] leading-tight">Nesta Ira Estates</p>
+            <p class="text-[0.9rem] text-muted mt-1">Entire road infrastructure for a residential layout, using GGBS and EcoConcrete.</p>
+            <dl class="mt-4 grid grid-cols-3 gap-3 text-center">
+              <div><dd class="stat-num font-display text-[1.4rem]">20%</dd><dt class="text-[11px] text-faint">cost cut</dt></div>
+              <div><dd class="stat-num font-display text-[1.4rem]">3,000kg</dd><dt class="text-[11px] text-faint">cement removed</dt></div>
+              <div><dd class="stat-num font-display text-[1.4rem]">1,000t</dd><dt class="text-[11px] text-faint">water saved</dt></div>
+            </dl>
+          </div>
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.3rem] leading-tight">CoEvolve Estates</p>
+            <p class="text-[0.9rem] text-muted mt-1">Durable internal roads in Whitefield, Bangalore, via soil stabilisation and waterproofing.</p>
+            <dl class="mt-4 grid grid-cols-3 gap-3 text-center">
+              <div><dd class="stat-num font-display text-[1.4rem]">20%</dd><dt class="text-[11px] text-faint">cost cut</dt></div>
+              <div><dd class="stat-num font-display text-[1.4rem]">500kg</dd><dt class="text-[11px] text-faint">cement removed</dt></div>
+              <div><dd class="stat-num font-display text-[1.4rem]">100t</dd><dt class="text-[11px] text-faint">water saved</dt></div>
+            </dl>
+          </div>
+        </div>
+        <figure class="mt-5">
+          <div class="make p-6">
+            <p class="label mb-2">Infographic to create</p>
+            <p class="text-[0.95rem] text-ink/80">An impact strip: the <span class="bt">TiE50 2026 badge</span>, the two project stat cards above, and the client logos (CoEvolve, Lodha, Indian Army, Bier Library, Agastya). One clean band that signals credibility at a glance.</p>
+          </div>
+        </figure>
+      </section>
+ 
+      <!-- REFLECTION -->
+      <section class="py-14 prose-body border-t border-line" id="reflection">
+        <p class="kicker mb-3">Reflection</p>
+        <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">What I would carry forward</h2>
+        <div class="impl rounded-xl p-5"><p class="label mb-2">In your own words</p><p class="text-[0.98rem] text-ink/90">Two or three honest lines: what building the calculator taught you, what you would refine in the site, and what you would explore next, account-based saved calculations, more product types, a downloadable impact report. It reads strongest in your voice, so I have left it for you.</p></div>
+      </section>
+ 
+      <nav class="py-12 border-t border-line flex items-center justify-between text-[14px]" aria-label="Case study">
+        <a href="index.html#work" class="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All work
+        </a>
+        <a href="index.html#contact" class="bt inline-flex items-center gap-2 font-medium transition-colors">
+          Get in touch <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </article>
+  </main>
+ 
+  <footer class="border-t border-line">
+    <div class="mx-auto max-w-content px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-muted">
+      <p>© <span id="year"></span> Gitanshu Gupta</p>
+      <p>Built with care, not templates.</p>
+    </div>
+  </footer>
+ 
+  <button id="toTop" aria-label="Back to top" class="fixed bottom-6 right-6 z-50 h-11 w-11 rounded-full btn-brand shadow-lg flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+ 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => { const open = mobileMenu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', String(open)); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+    const toTop = document.getElementById('toTop'), reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.addEventListener('scroll', () => { const show = window.scrollY > 400; toTop.classList.toggle('opacity-0', !show); toTop.classList.toggle('pointer-events-none', !show); toTop.classList.toggle('translate-y-2', !show); }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  </script>
+</body>
+</html>
+ 

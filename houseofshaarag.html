@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House of Shaarag · Gitanshu Gupta</title>
+  <meta name="description" content="Case study: designing and building the House of Shaarag website, a bespoke interior-design studio, so the site itself reads as the quiet luxury the studio sells." />
+  <meta property="og:title" content="House of Shaarag · web design and build case study" />
+  <meta property="og:description" content="A design-led website for a luxury interior studio, plus a Careers and blog strategy to widen its reach." />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { paper: '#ffffff', warm: '#f4f4f7', ink: '#18181a', muted: '#46464e', faint: '#9090a0', line: '#e4e4ec' },
+        fontFamily: { display: ['"DM Serif Display"', 'Georgia', 'serif'], sans: ['"DM Sans"', 'system-ui', 'sans-serif'] },
+        maxWidth: { content: '72rem', read: '46rem' },
+      } },
+    };
+  </script>
+  <style>
+    /* ===========================================================
+       THIS CASE STUDY'S BRAND COLOR. House of Shaarag uses gold;
+       this is a deeper, richer gold. Change this one line to
+       re-theme the page. (Their literal brand gold is #d4af37.)
+       =========================================================== */
+    :root { --brand: #8a6a1f; }
+ 
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    html { scroll-padding-top: 5rem; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    .label   { letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 600; }
+    .eyebrow { letter-spacing: .16em; text-transform: uppercase; font-size: .72rem; font-weight: 600; color: var(--brand); }
+    .bt      { color: var(--brand); }
+    .rule::after { content: ""; flex: 1; height: 1px; background: #e4e4ec; }
+    .thi-tag { letter-spacing: .14em; text-transform: uppercase; font-size: .68rem; color: #9090a0; }
+    .sec-num { color: var(--brand); }
+    .bq      { border-left: 3px solid var(--brand); }
+    .impl    { background: color-mix(in srgb, var(--brand) 10%, #fff); border: 1px solid color-mix(in srgb, var(--brand) 26%, #fff); }
+    .impl .label { color: var(--brand); }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: color-mix(in srgb, var(--brand) 85%, #000); }
+    .prose-body p { line-height: 1.75; color: #2b2b2b; }
+    .prose-body p + p { margin-top: 1.1rem; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 2px; }
+  </style>
+</head>
+ 
+<body class="bg-paper text-ink font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+ 
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
+    <nav class="mx-auto max-w-content px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+      <a href="index.html" class="text-[15px] font-medium tracking-tight hover:text-[color:var(--brand)] transition-colors">Gitanshu Gupta</a>
+      <div class="hidden md:flex items-center gap-8 text-[14px] text-muted">
+        <a href="index.html#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="index.html#about" class="hover:text-ink transition-colors">About</a>
+        <a href="index.html#contact" class="hover:text-ink transition-colors">Contact</a>
+        <a href="#" class="border border-line rounded-full px-4 py-1.5 text-ink hover:border-ink transition-colors">Résumé</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-line bg-paper">
+      <div class="px-5 py-3 flex flex-col text-[15px]">
+        <a href="index.html#work" class="py-2.5 border-b border-line/70">Work</a>
+        <a href="index.html#about" class="py-2.5 border-b border-line/70">About</a>
+        <a href="index.html#contact" class="py-2.5 border-b border-line/70">Contact</a>
+        <a href="#" class="py-2.5">Résumé</a>
+      </div>
+    </div>
+  </header>
+ 
+  <main id="main" class="mx-auto max-w-read px-5 sm:px-6">
+    <a href="index.html#work" class="inline-flex items-center gap-2 text-[13px] text-muted hover:text-ink transition-colors mt-10">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Selected work
+    </a>
+ 
+    <article>
+      <header class="pt-8 pb-12 border-b border-line">
+        <p class="eyebrow mb-5">Web design &amp; build · live</p>
+        <h1 class="font-display text-[2.3rem] sm:text-[3.1rem] leading-[1.1]">House of Shaarag</h1>
+        <p class="mt-5 text-[1.1rem] sm:text-[1.2rem] leading-relaxed text-muted">
+          The website for a bespoke interior design and architecture studio, built so the site itself reads as the quiet luxury the studio is selling.
+        </p>
+ 
+        <!-- cover: replace with <img src="..." alt="House of Shaarag homepage" loading="lazy"> -->
+        <div class="mt-8 aspect-[16/9] bg-warm border border-dashed border-line rounded-2xl flex items-center justify-center text-muted">
+          <span class="label">Hero / homepage screenshot</span>
+        </div>
+ 
+        <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
+          <div><dt class="label text-muted mb-1.5">Role</dt><dd class="text-[0.95rem]">Designed &amp; built the website</dd></div>
+          <div><dt class="label text-muted mb-1.5">Studio</dt><dd class="text-[0.95rem]">WebLynks</dd></div>
+          <div><dt class="label text-muted mb-1.5">Sector</dt><dd class="text-[0.95rem]">Interior design &amp; architecture</dd></div>
+          <div><dt class="label text-muted mb-1.5">Timeline</dt><dd class="text-[0.95rem]">[Add timeline]</dd></div>
+          <div><dt class="label text-muted mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Tailwind · HTML · CSS</dd></div>
+          <div><dt class="label text-muted mb-1.5">Live</dt><dd class="text-[0.95rem]"><a href="https://houseofshaarag.com" class="bt underline underline-offset-2">houseofshaarag.com</a></dd></div>
+        </dl>
+ 
+        <a href="https://houseofshaarag.com" class="btn-brand mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium transition-colors">
+          Visit the live site
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17 17 7M9 7h8v8"/></svg>
+        </a>
+      </header>
+ 
+      <!-- 01 BRIEF -->
+      <section class="py-14 prose-body" id="brief">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">01</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">The Brief</h2></div>
+        <p class="text-muted mb-9">A site that has to look like taste, not talk about it.</p>
+ 
+        <p>House of Shaarag is a bespoke interior design and architecture studio. Its promise is quiet luxury: residential and commercial spaces that balance light, texture, and proportion, built around the client's own story rather than a house style. The work spans private homes through to hospitality.</p>
+        <p>For a studio whose entire value is taste and craft, the website is the first thing a prospective client judges, and it has to pass that judgement before a single project is discussed. A generic or cluttered site would quietly contradict everything the studio claims to be. So the real challenge here was not features, it was design: the site itself had to feel as considered and restrained as the interiors, let the photography do the talking, and still work as a channel that brings new people in.</p>
+ 
+        <div class="impl mt-8 rounded-xl p-5"><p class="label mb-2">A note on this section</p><p class="text-[0.98rem] text-ink/90">This brief is my reading of the studio's goals, grounded in the live site. Replace it with the real brief you worked to.</p></div>
+      </section>
+ 
+      <!-- 02 RESEARCH -->
+      <section class="py-14 prose-body border-t border-line" id="research">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">02</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Research</h2></div>
+        <p class="text-muted mb-1">Learning the visual language of luxury before designing in it.</p>
+        <p class="thi-tag mb-9">↳ THI · Gestaltung 1</p>
+ 
+        <p>Because this was a design challenge, the research was about reference and restraint rather than user interviews. High-end interior and architecture studios share a recognisable visual language, and the goal was to understand it well enough to design fluently inside it.</p>
+        <p>The pattern across the category is consistent: large, slow photography given room to breathe, generous whitespace, a restrained palette lifted by a single warm metallic accent, a serif display paired with a quiet sans, and almost no decorative interface chrome. The signal of premium is created by space and discipline, not by ornament. The lesson taken into the design was that perceived quality rises as the interface gets quieter, so the site should subtract rather than add.</p>
+ 
+        <div class="impl mt-8 rounded-xl p-5"><p class="label mb-2">Optional</p><p class="text-[0.98rem] text-ink/90">If you looked at specific reference studios while designing, name two or three here. Concrete references make this section stronger.</p></div>
+      </section>
+ 
+      <!-- 03 AUDIENCE -->
+      <section class="py-14 prose-body border-t border-line" id="audience">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">03</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Audience</h2></div>
+        <p class="text-muted mb-9">Who the site has to win over.</p>
+ 
+        <p>The site speaks to more than one kind of visitor, which shaped both the design and the structure. These are the brand's target audiences rather than interviewed individuals.</p>
+        <div class="grid sm:grid-cols-2 gap-5 mt-6 not-prose">
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.3rem] leading-tight">The residential client</p>
+            <p class="text-[0.9rem] text-muted mt-1">Commissioning a home and paying for an eye they trust.</p>
+            <p class="text-[0.92rem] text-ink/80 mt-3">Wants to see the studio's taste immediately, feel that their own story will be heard, and sense the calm and care the spaces promise. Persuaded by photography and restraint, not by feature lists.</p>
+          </div>
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.3rem] leading-tight">The commercial client</p>
+            <p class="text-[0.9rem] text-muted mt-1">A hospitality or workspace project, like the Presto office.</p>
+            <p class="text-[0.92rem] text-ink/80 mt-3">Needs proof of range and a credible, transparent process from first sketch to final detail, and reassurance the studio can carry a larger build end to end.</p>
+          </div>
+        </div>
+      </section>
+ 
+      <!-- 04 IA -->
+      <section class="py-14 prose-body border-t border-line" id="ia">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">04</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Information Architecture</h2></div>
+        <p class="text-muted mb-1">A simple core, widened deliberately for reach.</p>
+        <p class="thi-tag mb-9">↳ THI · Webdesign &amp; Webusability</p>
+ 
+        <p>The core of the site is intentionally simple, because a luxury brand should never make a visitor work: Home, About, Services, split into Architecture, Interior, and Turnkey or Consultancy, a Portfolio, and Contact. That is the whole path from arrival to enquiry.</p>
+        <p>The more deliberate decision was to add two sections that most studio sites leave out: a Careers section and a News and Insights blog. Both exist to widen the site's reach. The blog gives the studio a reason to appear in search beyond its project names and lets it show thinking, not just finished rooms, which keeps people returning between commissions. Careers signals a studio that is growing and gives talent a way in, which is itself a credibility signal to clients. Together they turn a brochure that is visited once into a site with reasons to come back.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-10"><h3 class="label whitespace-nowrap">Sitemap</h3></div>
+        <p>Home, About, Services, Portfolio, News and Insights, Careers, and Contact.</p>
+        <figure class="mt-6">
+          <!-- replace with <img src="..." alt="House of Shaarag sitemap" loading="lazy"> -->
+          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">Sitemap diagram</span></div>
+          <figcaption class="text-[12px] text-muted mt-2">Add a sitemap diagram if you would like one here.</figcaption>
+        </figure>
+      </section>
+ 
+      <!-- 05 DESIGN -->
+      <section class="py-14 prose-body border-t border-line" id="design">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">05</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Design</h2></div>
+        <p class="text-muted mb-1">The quiet-luxury system, made concrete.</p>
+        <p class="thi-tag mb-9">↳ THI · Gestaltung 1 · Gestaltung 2</p>
+ 
+        <p>The whole design rests on restraint. A warm, near-neutral palette is lifted by a single gold accent, a serif display carries the headlines while a clean sans handles everything else, and the layout is built around generous whitespace and large photography rather than dense content. Motion is slow and understated, present only to feel considered, never to perform.</p>
+        <p>The work leads on every page. Project imagery runs large, the interface chrome around it stays minimal, and hierarchy is created with scale and space so each space can breathe. The discipline was knowing what to leave out, which is the same discipline the studio applies to a room.</p>
+ 
+        <div class="two-col grid sm:grid-cols-2 gap-4 mt-7 not-prose">
+          <div class="aspect-[4/3] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">Home / portfolio screen</span></div>
+          <div class="aspect-[4/3] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">Project detail screen</span></div>
+        </div>
+        <p class="text-[12px] text-muted mt-2">Add screenshots of the key screens.</p>
+      </section>
+ 
+      <!-- 06 TESTING & QA -->
+      <section class="py-14 prose-body border-t border-line" id="testing">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">06</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Testing &amp; QA</h2></div>
+        <p class="text-muted mb-9">Holding the polish across devices.</p>
+ 
+        <p>For an image-led luxury site, the quality bar lives in the details, so the real testing was responsive behaviour across phones, tablets, and desktops, visual consistency of type and spacing on every page, and performance, keeping a heavily photographic site fast despite the weight of its imagery.</p>
+        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">Add if it applies</p><p class="text-[0.98rem] text-ink/90">If you ran review rounds with the studio or gathered any client or user feedback, summarise it here. If not, this section can stay focused on responsive and performance QA, or be removed.</p></div>
+      </section>
+ 
+      <!-- 07 IMPLEMENTATION -->
+      <section class="py-14 prose-body border-t border-line" id="build">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">07</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Technical Implementation</h2></div>
+        <p class="text-muted mb-1">How a photography-heavy site stays fast.</p>
+        <p class="thi-tag mb-9">↳ THI · Webtechnologien</p>
+ 
+        <p>The site was built with Django for templating and for the content behind projects, the blog, and careers, with Tailwind, HTML, and CSS on the front end. The defining technical concern was performance under the weight of imagery, so photography is served in optimised formats and loaded lazily, which keeps the experience quick without compromising the large, high-quality visuals the brand depends on.</p>
+        <p>Making projects, posts, and roles content-driven also matters beyond performance: it lets the studio keep the portfolio, the blog, and Careers current without a developer, which is what makes the reach strategy in the architecture actually sustainable.</p>
+ 
+        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">Confirm</p><p class="text-[0.98rem] text-ink/90">Adjust the stack details to exactly what you used, and add anything notable, a CMS choice, hosting, or a specific performance technique.</p></div>
+      </section>
+ 
+      <!-- 08 FINAL DESIGN -->
+      <section class="py-14 prose-body border-t border-line" id="final">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">08</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Final Design</h2></div>
+        <p class="text-muted mb-1">The shipped product and its system.</p>
+        <p class="thi-tag mb-9">↳ THI · Gestaltung 2</p>
+ 
+        <figure class="mt-2">
+          <!-- replace with <img src="..." alt="Final screens" loading="lazy"> -->
+          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">Final screens</span></div>
+          <figcaption class="text-[12px] text-muted mt-2">Add the final screens, or an embed of the live site.</figcaption>
+        </figure>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-10"><h3 class="label whitespace-nowrap">Style at a glance</h3></div>
+        <p>A restrained warm-neutral base, a single gold accent drawn from the brand, a serif display paired with a clean sans, and spacing used as the primary tool for hierarchy.</p>
+        <div class="impl mt-4 rounded-xl p-5"><p class="label mb-2">Add the detail</p><p class="text-[0.98rem] text-ink/90">Drop in the exact palette with hex values, the type scale, and the core components if you want this to double as a style guide.</p></div>
+      </section>
+ 
+      <!-- 09 REFLECTION -->
+      <section class="py-14 prose-body border-t border-line" id="reflection">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">09</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Reflection</h2></div>
+        <p class="text-muted mb-9">In your own words.</p>
+        <div class="impl rounded-xl p-5"><p class="label mb-2">Add your reflection</p><p class="text-[0.98rem] text-ink/90">Two or three honest lines: what was hardest about designing for a brand whose product is taste, what you would refine, and what this project taught you. It reads strongest in your voice, so I have left it for you.</p></div>
+      </section>
+ 
+      <nav class="py-12 border-t border-line flex items-center justify-between text-[14px]" aria-label="Case study">
+        <a href="index.html#work" class="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All work
+        </a>
+        <a href="index.html#contact" class="bt inline-flex items-center gap-2 font-medium transition-colors">
+          Get in touch <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </article>
+  </main>
+ 
+  <footer class="border-t border-line">
+    <div class="mx-auto max-w-content px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-muted">
+      <p>© <span id="year"></span> Gitanshu Gupta</p>
+      <p>Built with care, not templates.</p>
+    </div>
+  </footer>
+ 
+  <button id="toTop" aria-label="Back to top" class="fixed bottom-6 right-6 z-50 h-11 w-11 rounded-full btn-brand shadow-lg flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+ 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => { const open = mobileMenu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', String(open)); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+    const toTop = document.getElementById('toTop'), reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.addEventListener('scroll', () => { const show = window.scrollY > 400; toTop.classList.toggle('opacity-0', !show); toTop.classList.toggle('pointer-events-none', !show); toTop.classList.toggle('translate-y-2', !show); }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  </script>
+</body>
+</html>
+ 

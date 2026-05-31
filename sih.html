@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pothole Redressal System · Gitanshu Gupta</title>
+  <meta name="description" content="UX case study: a zero-friction pothole reporting system for the Government of Goa, built on the platforms citizens already use and an admin tool that groups and routes every complaint." />
+  <meta property="og:title" content="Pothole Redressal System · UX case study" />
+  <meta property="og:description" content="Reporting through Twitter and WhatsApp, AI validation, geo-clustering, and a ward-scoped admin tool that closes the loop with citizens." />
+  <meta property="og:type" content="article" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛠️</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: { extend: {
+        colors: { paper: '#ffffff', warm: '#f4f4f7', ink: '#18181a', muted: '#46464e', line: '#e4e4ec' },
+        fontFamily: { display: ['"DM Serif Display"', 'Georgia', 'serif'], sans: ['"DM Sans"', 'system-ui', 'sans-serif'] },
+        maxWidth: { content: '72rem', read: '46rem' },
+      } },
+    };
+  </script>
+  <style>
+    /* ===========================================================
+       THIS CASE STUDY'S BRAND COLOR. Change this one line to
+       re-theme the whole page (eyebrow, section numbers, quotes,
+       buttons, accents). Keep it deep and rich, not bright.
+       =========================================================== */
+    :root { --brand: #0e5c5b; }
+ 
+    @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+    html { scroll-padding-top: 5rem; }
+    body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+    .label   { letter-spacing: .18em; text-transform: uppercase; font-size: .72rem; font-weight: 600; }
+    .eyebrow { letter-spacing: .18em; text-transform: uppercase; font-size: .72rem; font-weight: 600; color: var(--brand); }
+    .bt      { color: var(--brand); }
+    .rule::after { content: ""; flex: 1; height: 1px; background: #e4e4ec; }
+    .thi-tag { letter-spacing: .14em; text-transform: uppercase; font-size: .68rem; color: #9a958b; }
+    .sec-num { color: var(--brand); }
+    .bq      { border-left: 3px solid var(--brand); }
+    .impl    { background: color-mix(in srgb, var(--brand) 8%, #fff); border: 1px solid color-mix(in srgb, var(--brand) 22%, #fff); }
+    .impl .label { color: var(--brand); }
+    .flow-arrow { color: var(--brand); }
+    .btn-brand { background: var(--brand); color: #fff; }
+    .btn-brand:hover { background: color-mix(in srgb, var(--brand) 85%, #000); }
+    .prose-body p { line-height: 1.75; color: #2b2b2b; }
+    .prose-body p + p { margin-top: 1.1rem; }
+    a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 2px; }
+  </style>
+</head>
+ 
+<body class="bg-paper text-ink font-sans antialiased">
+  <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-3 focus:left-3 focus:bg-ink focus:text-paper focus:px-4 focus:py-2 focus:rounded">Skip to content</a>
+ 
+  <header class="sticky top-0 z-40 bg-paper/90 backdrop-blur border-b border-line">
+    <nav class="mx-auto max-w-content px-5 sm:px-8 h-16 flex items-center justify-between" aria-label="Primary">
+      <a href="index.html" class="text-[15px] font-medium tracking-tight hover:text-[color:var(--brand)] transition-colors">Gitanshu Gupta</a>
+      <div class="hidden md:flex items-center gap-8 text-[14px] text-muted">
+        <a href="index.html#work" class="hover:text-ink transition-colors">Work</a>
+        <a href="index.html#about" class="hover:text-ink transition-colors">About</a>
+        <a href="index.html#contact" class="hover:text-ink transition-colors">Contact</a>
+        <a href="#" class="border border-line rounded-full px-4 py-1.5 text-ink hover:border-ink transition-colors">Résumé</a>
+      </div>
+      <button id="menuBtn" class="md:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </nav>
+    <div id="mobileMenu" class="md:hidden hidden border-t border-line bg-paper">
+      <div class="px-5 py-3 flex flex-col text-[15px]">
+        <a href="index.html#work" class="py-2.5 border-b border-line/70">Work</a>
+        <a href="index.html#about" class="py-2.5 border-b border-line/70">About</a>
+        <a href="index.html#contact" class="py-2.5 border-b border-line/70">Contact</a>
+        <a href="#" class="py-2.5">Résumé</a>
+      </div>
+    </div>
+  </header>
+ 
+  <main id="main" class="mx-auto max-w-read px-5 sm:px-6">
+    <a href="index.html#work" class="inline-flex items-center gap-2 text-[13px] text-muted hover:text-ink transition-colors mt-10">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg>
+      Selected work
+    </a>
+ 
+    <article>
+      <header class="pt-8 pb-12 border-b border-line">
+        <p class="eyebrow mb-5">UX case study · 2020</p>
+        <h1 class="font-display text-[2.3rem] sm:text-[3.1rem] leading-[1.1]">Pothole Redressal System</h1>
+        <p class="mt-5 text-[1.1rem] sm:text-[1.2rem] leading-relaxed text-muted">
+          A centralized reporting system designed for the Government of Goa that enables citizens to seamlessly report local potholes, while empowering municipal agencies to efficiently manage and resolve complaints.
+        </p>
+        <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
+          <div><dt class="label text-muted mb-1.5">Timeline</dt><dd class="text-[0.95rem]">Jan 2020 to Aug 2020</dd></div>
+          <div><dt class="label text-muted mb-1.5">Role</dt><dd class="text-[0.95rem]">Full-stack developer, UX &amp; UI designer</dd></div>
+          <div><dt class="label text-muted mb-1.5">Platform</dt><dd class="text-[0.95rem]">Web (admin) plus WhatsApp &amp; Twitter</dd></div>
+          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Process</dt><dd class="text-[0.95rem]">Empirical research, socio-technical discovery, requirement analysis, service mapping, high-fidelity prototyping, empirical usability testing</dd></div>
+          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Postgres · Figma · Twilio API · Twitter API · Artificial Intelligence</dd></div>
+        </dl>
+      </header>
+ 
+      <section class="py-14 prose-body" id="problem">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">01</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">The Problem</h2></div>
+        <p class="text-muted mb-1">Defining what needed to change and why it mattered.</p>
+        <p class="thi-tag mb-9">↳ THI · Studiendesign &amp; UX-Tests · Design von MMI</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">Problem statement</h3></div>
+        <p>The Government of Goa discovered that citizens rarely registered pothole complaints through official apps and websites, despite frequent public complaints on social media and in newspaper columns. They wanted to make a reporting system that citizens could use to report potholes, and that helped government agencies better navigate these complaints and address them.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">Background &amp; context</h3></div>
+        <p>Previously, the state relied on two separate channels: a website to report potholes exclusively for national highways, and a mobile application specifically for potholes within Goa. To register a complaint, users had to visit the website or application, create an account, upload a picture of the pothole, manually type the exact address, and provide an email address or phone number before submission.</p>
+        <p>However, several critical usability and technical friction points limited the system's effectiveness:</p>
+        <div class="mt-6 space-y-5">
+          <div class="border-l-2 border-line pl-5"><p class="font-medium text-ink">Website non-responsiveness</p><p class="mt-1">The primary issue with the website was that it completely lacked responsiveness for mobile screens. Consequently, users discovering road damage while travelling were forced to log into a desktop computer if they wanted to register a complaint via the web portal.</p></div>
+          <div class="border-l-2 border-line pl-5"><p class="font-medium text-ink">Vague input forms &amp; insufficient file format support</p><p class="mt-1">The mobile application featured an unintuitive form layout. Furthermore, the backend system only supported .jpg and .jpeg formats, causing all other standard image files to be flagged as unsupported and blocking user submissions.</p></div>
+          <div class="border-l-2 border-line pl-5"><p class="font-medium text-ink">No feedback system</p><p class="mt-1">Post-submission, the platform failed to trigger any automated email or text-message notifications. Instead, users had to manually log back into the system just to verify the current status of their complaint.</p></div>
+          <div class="border-l-2 border-line pl-5"><p class="font-medium text-ink">No complaint segmentation</p><p class="mt-1">On the backend, administrative bodies relied on a basic dashboard that merely listed incoming complaints sequentially by timestamp, failing to categorize or prioritize tickets by location or severity.</p></div>
+        </div>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">Client expectation</h3></div>
+        <p>The client expected us to design a system for citizens to report potholes, but predominantly for government agencies to track these complaints effectively. We were expected to build an intuitive system that was easy to use, thereby driving high adoption and submission rates among citizens. Furthermore, incoming complaints needed to be highly discoverable and searchable for administrators, ensuring that critical data was securely tracked and never lost within the database.</p>
+      </section>
+ 
+      <section class="py-14 prose-body border-t border-line" id="research">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">02</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Research</h2></div>
+        <p class="text-muted mb-1">What the field already knew, what others offered, and where the gap was.</p>
+        <p class="thi-tag mb-9">↳ THI · Gestaltung 1 · Studiendesign &amp; UX-Tests</p>
+ 
+        <div class="rule flex items-center gap-4 mb-6"><h3 class="label whitespace-nowrap">Literature review</h3></div>
+ 
+        <h4 class="font-display text-[1.3rem] leading-snug mb-3">Automatic pothole detection sacrificed battery life and had a limited audience</h4>
+        <p>The most technically ambitious attempts at pothole detection bypassed the human reporter entirely by using the device's gyroscope and accelerometer to sense road impacts passively. Ola (a cab company) deployed this approach across its driver fleet in India, embedding a passive detection layer inside its existing driver application. The strategy was logical at scale: millions of vehicles already on the road, every trip a potential data-collection run. In practice, continuous sensor polling consumed battery reserves at a rate drivers found unacceptable, and the application was uninstalled en masse before meaningful data density could accumulate. A parallel public-facing version was released, but it required the user to hold the application open in the foreground while driving.</p>
+        <p>Boston's Street Bump programme, launched by the Mayor's Office in 2012, encountered the same fundamental constraint. The app could not run in the background, which meant users had to choose "Record a Trip" at the start of every journey and manually end and upload at the conclusion, actively limiting their access to other applications like navigation and calling during the trip. Beyond the interaction cost, the system oversampled wealthier, more digitally engaged neighbourhoods, because data only appeared where smartphone-owning drivers chose to participate, producing maps that reflected adoption demographics more than actual road conditions. Both programmes demonstrated that passive detection at scale required sustained user compliance that the interaction design could not sustain.</p>
+ 
+        <h4 class="font-display text-[1.3rem] leading-snug mb-3 mt-9">Government portals were difficult to use</h4>
+        <p>Multiple state and central government bodies launched web portals and Android applications for citizen pothole reporting. Each introduced friction at precisely the moments where the user's motivation was highest, that is, immediately after encountering the hazard. The registration flow demanded an OTP before any report could begin; OTPs arrived inconsistently, and first-time users who could not complete verification did not return. Users who passed authentication faced a multi-field form that required personal information, contact details, and residential address, with no clear explanation of why this data was necessary to report a pothole.</p>
+        <p>The location field was the biggest problem. Users were required to type a precise street address and PIN code for the location of the pothole, a task that was nearly impossible for someone who had just driven past the hazard and had no street-level address knowledge of that specific stretch of road. The form did not use device GPS. This single design decision, the choice of a text address field over a map pin, functionally disqualified every non-local and every user reporting from a vehicle. Image upload restrictions compounded the problem: only JPG and JPEG formats were accepted, rejecting the HEIC and HEIF files produced natively by modern iOS and Android cameras. Several portals were not responsive to mobile devices, requiring users to navigate compressed desktop layouts on small screens. The combined effect was not a low completion rate, it was near-zero utilisation from the population who encountered potholes most frequently.</p>
+ 
+        <h4 class="font-display text-[1.3rem] leading-snug mb-3 mt-9">Toll-free hotlines reached citizens but not operators</h4>
+        <p>Several states operated toll-free telephone reporting lines as a lower-friction alternative to digital portals. The concept was sound: a phone call required no login, no address entry, no image upload. In practice, line saturation made the channel inaccessible. Calls went unanswered during peak hours, which aligned precisely with peak commute periods when pothole encounters were most frequent. A citizen who experienced a hazard, pulled over, and dialled the number was met with an engaged tone. The goodwill required to attempt a second call rarely survived.</p>
+ 
+        <h4 class="font-display text-[1.3rem] leading-snug mb-3 mt-9">FixMyStreet proved that removing friction multiplied submissions</h4>
+        <p>The international reference case that demonstrated the inverse relationship most clearly was FixMyStreet, launched by the UK civic-technology organisation mySociety. The platform required no knowledge of council boundaries, no long forms, and offered GPS location detection for on-the-spot reporting. Its progressive web app architecture delivered a consistent, mobile-friendly experience with no login barriers regardless of device or platform. The result was measurable at council level: Bromley went from 3 per cent of its street problems being reported online to 50 per cent after adopting the platform. The lesson was not that citizens were more engaged in the UK. It was that the design had removed the conditions that prevented engagement in the first place.</p>
+ 
+        <h4 class="font-display text-[1.3rem] leading-snug mb-3 mt-9">Citizens routed around the official system entirely</h4>
+        <p>Research into public social-media activity revealed a parallel reporting ecosystem that had grown organically because the official one did not function. Thousands of posts appeared daily across Twitter and Facebook in which citizens photographed potholes, tagged local government accounts, and described road conditions with precise location context and photographic evidence. This behaviour demonstrated that reporting intent was always there. The social-media posts contained every element a valid report required: a timestamp, a photograph, and enough contextual description to locate the hazard. They arrived without authentication barriers, without address fields, without format restrictions. They were simply ignored by the infrastructure meant to act on them.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">The gap</h3></div>
+        <p>Every approach examined failed at the same point: the moment between a citizen encountering a hazard and that encounter becoming a structured, actionable data record in a government system. Passive detection required continuous foreground attention. Government portals required location knowledge users did not have and authentication flows that regularly failed. Telephone lines required available operators. Social media captured the report but had no pipeline to translate it into infrastructure action.</p>
+        <p>No existing solution combined GPS-based location capture with zero-authentication submission, cross-platform compatibility, unrestricted media formats, and a direct integration pathway to municipal workflows. That intersection was the design brief.</p>
+      </section>
+ 
+      <section class="py-14 prose-body border-t border-line" id="users">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">03</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Understanding Users</h2></div>
+        <p class="text-muted mb-1">Who we were designing for, and what we learned by talking to them.</p>
+        <p class="thi-tag mb-9">↳ THI · Studiendesign &amp; UX-Tests · Design von MMI</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">User interviews</h3></div>
+        <p><span class="font-medium text-ink">Method.</span> Semi-structured intercept interviews conducted in context, on the street, standing beside the potholes themselves, supplemented by stakeholder interviews with municipal officials who operate a comparable complaint system. 10 citizen participants and 2 officials, roughly 2 minutes each, all in person.</p>
+        <p>Two cohorts were deliberately sampled. The first was everyday road users intercepted at hazard sites: daily commuters, students, and office-goers, effectively anyone carrying a smartphone who had just encountered a damaged road. The second was administrative staff at the Kolkata Municipal Corporation (KMC), interviewed as a working proxy for the Goa municipal officials (GMC) the system was being designed for, on the assumption that both bodies operate broadly similar complaint-handling tools.</p>
+        <p><span class="font-medium text-ink">Approach.</span> Rather than asking people what features they wanted, the interviews probed behaviour and belief. Citizens were asked whether they were even aware that an official reporting channel existed; whether they would be willing to report the pothole in front of them; and, where they hesitated, what was holding them back. Officials were asked to walk through how a complaint actually moves through their existing system once it arrives. The guiding aim was to test a single assumption surfaced during research: that the intent to report is already present, and that the official infrastructure, not citizen apathy, is what suppresses it.</p>
+        <p><span class="font-medium text-ink">Conclusion.</span> The willingness to report is real and widespread, but it is gated by two forces working together: a deep distrust of government applications, and the absence of any feedback loop. People will engage readily with a channel that asks little of them, demands no installation or invasive permissions, and tells them what happened to their report.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-6 mt-12"><h3 class="label whitespace-nowrap">Key insights</h3></div>
+        <ol class="space-y-6 list-none">
+          <li><p class="font-medium text-ink"><span class="bt">1</span> · Almost no one knew the official channel existed</p><p class="mt-1">The large majority of citizens interviewed were unaware that any government website or app for reporting potholes existed at all.</p></li>
+          <li><p class="font-medium text-ink"><span class="bt">2</span> · Government apps are distrusted</p><p class="mt-1">Many participants actively refused to engage with government apps. Concerns went beyond inconvenience to fear: that the state could harvest their data, surveil them, or even retaliate against complainants. Several explicitly would not grant a government app access to their photos, files, or storage, citing the risk of hacking, and said they would not install an app at all for something as small as reporting a pothole.</p><blockquote class="bq mt-3 pl-4 font-display italic text-[1.05rem] text-ink/80">"Why would I download a government app and give it my photos? Who knows what runs in the background."</blockquote></li>
+          <li><p class="font-medium text-ink"><span class="bt">3</span> · Younger users want to report, and want better tools to do it</p><p class="mt-1">Where older residents were hesitant, younger commuters and students were markedly proactive. They wanted to report hazards and were frustrated that doing so was harder than it needed to be. They were asking for a lighter, faster, more usable system, not a reason to avoid one.</p></li>
+          <li><p class="font-medium text-ink"><span class="bt">4</span> · People expect an e-commerce-style feedback loop</p><p class="mt-1">The clearest mental model that emerged was delivery tracking. Users did not just want to submit a report and move on; they expected to get status updates and see it resolved, in exactly the way they track a package.</p><blockquote class="bq mt-3 pl-4 font-display italic text-[1.05rem] text-ink/80">"I should be able to see the status, like tracking a delivery: received, in progress, fixed."</blockquote></li>
+          <li><p class="font-medium text-ink"><span class="bt">5</span> · People want civic accountability attached to the report</p><p class="mt-1">Beyond fixing the road, users wanted to know who was responsible, the area's MLA or councillor, and wanted updates on their complaint framed around that accountability. Transparency about the responsible representative was treated as part of the feedback, not a separate feature.</p></li>
+        </ol>
+        <div class="impl mt-8 rounded-xl p-5"><p class="label mb-2">Design implication</p><p class="text-[0.98rem] text-ink/90">Together these insights pointed away from a permission-heavy native app and toward a browser-based, install-free, low-permission web tool with GPS-assisted location and visible status tracking.</p></div>
+ 
+        <div class="rule flex items-center gap-4 mb-6 mt-12"><h3 class="label whitespace-nowrap">Personas</h3></div>
+        <div class="grid sm:grid-cols-2 gap-5">
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.35rem]">Aarav Sen <span class="text-muted text-[1rem]">· 20</span></p>
+            <p class="text-[0.85rem] text-muted mt-0.5">Engineering student &amp; daily commuter · Kolkata</p>
+            <dl class="mt-4 space-y-3 text-[0.92rem]">
+              <div><dt class="font-medium text-ink">Goal</dt><dd class="text-ink/80">Report a hazard the moment he sees it and actually watch it get fixed, without it eating five minutes of his commute.</dd></div>
+              <div><dt class="font-medium text-ink">Frustration</dt><dd class="text-ink/80">Existing channels expect him to install an app, create an account, hand over personal details and photo access, and then give him nothing back: no confirmation, no status, no resolution.</dd></div>
+              <div><dt class="font-medium text-ink">Mental model</dt><dd class="text-ink/80">Reporting should behave like ordering online: submit, track, done. If he can track a ₹100 food order in real time, a pothole report should be no different.</dd></div>
+              <div><dt class="font-medium text-ink">Privacy stance</dt><dd class="text-ink/80">Willing to help, unwilling to install. A website he can use once is far more appealing than a permanent app on his phone.</dd></div>
+            </dl>
+          </div>
+          <div class="border border-line rounded-2xl p-6">
+            <p class="font-display text-[1.35rem]">Debashish Chandra <span class="text-muted text-[1rem]">· 46</span></p>
+            <p class="text-[0.85rem] text-muted mt-0.5">Officer, Municipal Corporation · Kolkata</p>
+            <dl class="mt-4 space-y-3 text-[0.92rem]">
+              <div><dt class="font-medium text-ink">Goal</dt><dd class="text-ink/80">Process incoming complaints efficiently, make sure none are lost, and get the most urgent and location-critical ones to the right ward councillor first.</dd></div>
+              <div><dt class="font-medium text-ink">Frustration</dt><dd class="text-ink/80">The current dashboard simply lists complaints in the order they arrive, with no way to segment or prioritise by location or severity. Urgent hazards sit in the same undifferentiated queue as minor ones, and useful reports are easy to bury or miss.</dd></div>
+              <div><dt class="font-medium text-ink">Mental model</dt><dd class="text-ink/80">Complaints are a queue that needs sorting and routing, closer to a ticketing system than a chronological inbox.</dd></div>
+            </dl>
+          </div>
+        </div>
+      </section>
+ 
+      <section class="py-14 prose-body border-t border-line" id="ia">
+        <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">04</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Information Architecture &amp; System Design</h2></div>
+        <p class="text-muted mb-1">How the solution is structured, and how the technical system supports it.</p>
+        <p class="thi-tag mb-9">↳ THI · Webdesign &amp; Webusability · Design von MMI</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">The core decision: no new app</h3></div>
+        <p>Research pointed to a hard constraint. People wanted to report, but they did not want to install a government app, hand over images and storage permissions, or trust a new app with their data. So the central architectural decision was to build no citizen-facing app at all. Instead, the system met people on platforms they already used and already trusted: Twitter and WhatsApp. To the citizen, the product is almost invisible. The interface is a tweet or a chat they already know how to use, and all of the real machinery sits on the backend.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">Sitemap &amp; content hierarchy</h3></div>
+        <p>Because there is no citizen app, there is no citizen sitemap in the usual sense. The two reporting front ends are existing platforms: a Twitter post with a designated hashtag and a photo, and a WhatsApp chat with a bot.</p>
+        <p>The only screen-based product built is the administrative web app for municipal officials. Its hierarchy is deliberately shallow:</p>
+        <ol class="mt-4 space-y-2 list-decimal pl-5 marker:text-muted">
+          <li><span class="font-medium text-ink">Login</span> (officials log in by ward number and password).</li>
+          <li><span class="font-medium text-ink">Ward complaint dashboard</span> (shows only complaints mapped to that ward).</li>
+          <li><span class="font-medium text-ink">Complaint detail</span> (street address and clustered location, all submitted images in one place, current status, lifecycle actions, an option to forward to another ward, and post-repair image upload).</li>
+          <li><span class="font-medium text-ink">Statistical dashboard</span> (open cases versus completed cases).</li>
+        </ol>
+        <p class="mt-4">Keeping the official's website to four levels was intentional. Each ward sees only its own area, so the queue never balloons into an unmanageable list.</p>
+ 
+        <div class="rule flex items-center gap-4 mb-6 mt-12"><h3 class="label whitespace-nowrap">User flow</h3></div>
+        <p class="mb-6">A report flows from either entry channel, through validation and grouping on the backend, to an official's action, and back to the reporter as a status update.</p>
+        <div class="flex flex-wrap items-center gap-x-2 gap-y-3 text-[0.82rem]">
+          <span class="rounded-lg bg-warm border border-line px-3 py-2">WhatsApp bot</span><span class="text-muted">/</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Tweet scraper</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Backend data ingestion</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">AI validation</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Data sorting &amp; grouping</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Admin website</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Admin action</span>
+          <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Status update to reporters</span>
+        </div>
+        <figure class="mt-8">
+          <!-- replace with <img src="..." alt="System data flow diagram" loading="lazy"> -->
+          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">System / data flow diagram (optional)</span></div>
+          <figcaption class="text-[12px] text-muted mt-2">Add your own diagram here, or the end-to-end flow you exported.</figcaption>
+        </figure>
+ 
+        <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">Technical architecture</h3></div>
+        <p>The backend was built on Django with a Postgres database. Reports arrive through two ingestion paths: the Twitter API for hashtag scraping, and a WhatsApp bot built on Twilio's API. Incoming images pass through an AI validation step that screens out non-pothole images and reused internet photos. Location handling relies on a GeoJSON map of Goa for ward assignment, Google Maps reverse geocoding to turn coordinates into street addresses, and a 100 metre proximity check combined with that address to group duplicate reports. Officials work through a separate administrative web app, with access scoped by ward.</p>
+        <p>This was an MVP, so several pieces are deliberately simple and could be hardened or extended, the official street-to-ward mapping being one clear next step. Even so, the architecture delivered a complete loop, from a citizen's tweet or chat, through validation, address resolution, and routing, to an official's action, and back to the citizen as a status update and a photo of the repaired road.</p>
+      </section>
+ 
+      <nav class="py-12 border-t border-line flex items-center justify-between text-[14px]" aria-label="Case study">
+        <a href="index.html#work" class="inline-flex items-center gap-2 text-muted hover:text-ink transition-colors">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M11 18l-6-6 6-6"/></svg> All work
+        </a>
+        <a href="index.html#contact" class="bt inline-flex items-center gap-2 font-medium transition-colors">
+          Get in touch <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </nav>
+    </article>
+  </main>
+ 
+  <footer class="border-t border-line">
+    <div class="mx-auto max-w-content px-5 sm:px-8 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-[13px] text-muted">
+      <p>© <span id="year"></span> Gitanshu Gupta</p>
+      <p>Built with care, not templates.</p>
+    </div>
+  </footer>
+ 
+  <button id="toTop" aria-label="Back to top" class="fixed bottom-6 right-6 z-50 h-11 w-11 rounded-full btn-brand shadow-lg flex items-center justify-center opacity-0 pointer-events-none translate-y-2 transition-all duration-300">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg>
+  </button>
+ 
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const menuBtn = document.getElementById('menuBtn'), mobileMenu = document.getElementById('mobileMenu');
+    menuBtn.addEventListener('click', () => { const open = mobileMenu.classList.toggle('hidden') === false; menuBtn.setAttribute('aria-expanded', String(open)); });
+    mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mobileMenu.classList.add('hidden'); menuBtn.setAttribute('aria-expanded', 'false'); }));
+    const toTop = document.getElementById('toTop'), reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    window.addEventListener('scroll', () => { const show = window.scrollY > 400; toTop.classList.toggle('opacity-0', !show); toTop.classList.toggle('pointer-events-none', !show); toTop.classList.toggle('translate-y-2', !show); }, { passive: true });
+    toTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }));
+  </script>
+</body>
+</html>
+ 
