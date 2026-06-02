@@ -24,7 +24,7 @@
   </script>
   <style>
     /* This case study's brand color (EcoPath's real deep green). Change to re-theme. */
-    :root { --brand: #17411a; }
+    :root { --brand: #17411A; }
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     html { scroll-padding-top: 5rem; }
     body { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
@@ -88,15 +88,14 @@
           A startup decarbonizing road construction with cement-free concrete, and a website built so its single hardest job, proving the impact, happens in the visitor's own hands.
         </p>
         <figure class="mt-8">
-          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-2xl flex items-center justify-center text-muted"><span class="label">Hero / homepage screenshot</span></div>
+          <div class="aspect-[16/9] flex items-center justify-center text-muted"><img src="./ecopath_coverpage.png" alt="EcoPath website coverpage"></div>
         </figure>
-        <dl class="mt-9 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
-          <div><dt class="label text-faint mb-1.5">Role</dt><dd class="text-[0.95rem]">Designed &amp; built the website</dd></div>
-          <div><dt class="label text-faint mb-1.5">Timeline</dt><dd class="text-[0.95rem]">[Add timeline]</dd></div>
-          <div><dt class="label text-faint mb-1.5">Sector</dt><dd class="text-[0.95rem]">Sustainable construction</dd></div>
-          <div><dt class="label text-faint mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Tailwind · HTML · CSS</dd></div>
-          <div><dt class="label text-faint mb-1.5">Recognition</dt><dd class="text-[0.95rem]">TiE50 2026 winner</dd></div>
-          <div><dt class="label text-faint mb-1.5">Live</dt><dd class="text-[0.95rem]"><a href="https://ecopath.earth" class="bt underline underline-offset-2">ecopath.earth</a></dd></div>
+        <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
+          <div><dt class="label text-muted mb-1.5">Timeline</dt><dd class="text-[0.95rem]">July 2025 to Dec 2025</dd></div>
+          <div><dt class="label text-muted mb-1.5">Role</dt><dd class="text-[0.95rem]">Full-stack developer, UX &amp; UI designer</dd></div>
+          <div><dt class="label text-muted mb-1.5">Platform</dt><dd class="text-[0.95rem]">Web</dd></div>
+          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Process</dt><dd class="text-[0.95rem]">Empirical research, socio-technical discovery, requirement analysis, service mapping, high-fidelity prototyping, empirical usability testing</dd></div>
+          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Figma · Tailwind CSS · Google Materials · HTML · CSS · JavaScript</dd></div>
         </dl>
         <a href="https://ecopath.earth" class="btn-brand mt-8 inline-flex items-center gap-2 rounded-full px-6 py-3 text-[14px] font-medium transition-colors">
           Visit the live site
@@ -104,11 +103,11 @@
         </a>
         <nav class="mt-9 flex flex-wrap gap-2" aria-label="On this page">
           <a href="#overview" class="chip">Overview</a>
-          <a href="#problem" class="chip">The problem</a>
+          <a href="#problem" class="chip">The Problem</a>
           <a href="#research" class="chip">Research</a>
           <a href="#audience" class="chip">Audience</a>
           <a href="#ia" class="chip">Architecture</a>
-          <a href="#calculator" class="chip">The calculator</a>
+          <a href="#calculator" class="chip">The Calculator</a>
           <a href="#build" class="chip">Build</a>
           <a href="#impact" class="chip">Impact</a>
         </nav>
@@ -125,7 +124,7 @@
       <section class="py-14 prose-body border-t border-line" id="problem">
         <p class="kicker mb-3">The problem</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Green is an easy claim and a hard sell</h2>
-        <p class="thi-tag mb-7">↳ THI · Studiendesign &amp; UX-Tests</p>
+        <p class="thi-tag mb-7"></p>
         <p>Every construction supplier now claims to be sustainable, so the word has lost its weight. EcoPath's savings are real and large, around 75 to 80 per cent less CO2 than traditional concrete, roughly 30 per cent less water, and over ten thousand tonnes of industrial waste reused. But a developer reading those figures has two fair questions the brand has to answer before a sale: can I trust this, and what would it actually mean for my project. A page of bold percentages answers neither.</p>
         <figure class="mt-6">
           <div class="make p-6">
@@ -139,23 +138,20 @@
       <section class="py-14 prose-body border-t border-line" id="research">
         <p class="kicker mb-3">Research</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">How a buyer actually judges a sustainability claim</h2>
-        <p class="thi-tag mb-7">↳ THI · Gestaltung 1 · Studiendesign &amp; UX-Tests</p>
+        <p class="thi-tag mb-7"></p>
         <p>This was desk and category research rather than user interviews, so I am describing what shaped the design, not invented findings. Two things drove the decisions.</p>
         <p><span class="font-medium text-ink">Credibility comes from specifics.</span> Industrial buyers discount round marketing numbers and trust concrete evidence: named projects, real clients, third-party recognition, and figures tied to a real job. EcoPath had all of these, so the site had to foreground them rather than adjectives.</p>
         <p><span class="font-medium text-ink">Abstract figures do not move people.</span> A quantity like twelve tonnes of CO2 is meaningless to most readers because they have no reference for it. The research pointed toward translating impact into units people already understand, which became the core idea of the calculator later.</p>
         <figure class="mt-6">
           <div class="make p-6">
-            <p class="label mb-2">Infographic to create · 1 of 2</p>
-            <p class="text-[0.95rem] text-ink/80">A side-by-side comparison of <span class="bt">EcoConcrete vs traditional concrete</span> across four measures: CO2, water use, industrial waste, and road lifespan. Four paired bars or a clean two-column table with the real figures from the site.</p>
+            <img src="./ecopath_infographic1.png" alt="">  
           </div>
         </figure>
         <figure class="mt-4">
           <div class="make p-6">
-            <p class="label mb-2">Infographic to create · 2 of 2</p>
-            <p class="text-[0.95rem] text-ink/80">A short category scan: three or four typical construction or sustainability sites, in a small grid, showing <span class="bt">what they show (claims, photos) vs what they leave out (project-specific proof)</span>, and where EcoPath chose to go further.</p>
+            <img src="./ecopath_infographic2.png" alt="">  
           </div>
         </figure>
-        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">If you have it</p><p class="text-[0.98rem] text-ink/90">If you spoke to any EcoPath clients or sales staff about what convinces buyers, a couple of real quotes here would lift this section from sound reasoning to evidence.</p></div>
       </section>
  
       <!-- AUDIENCE -->
@@ -178,10 +174,7 @@
           </div>
         </div>
         <figure class="mt-6">
-          <div class="make p-6">
-            <p class="label mb-2">Infographic to create</p>
-            <p class="text-[0.95rem] text-ink/80">A segmentation graphic of these <span class="bt">three buyer types</span>, each with their core question and the part of the site that answers it (projects for trust, services for scale, the calculator for quantified impact).</p>
-          </div>
+          
         </figure>
       </section>
  
@@ -189,14 +182,11 @@
       <section class="py-14 prose-body border-t border-line" id="ia">
         <p class="kicker mb-3">Information architecture</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Separating what you buy from what you hire</h2>
-        <p class="thi-tag mb-7">↳ THI · Webdesign &amp; Webusability</p>
+        <p class="thi-tag mb-7"></p>
         <p>The key structural decision was to stop treating EcoPath as one thing. It sells cement-free <span class="font-medium text-ink">products</span>, ready-mix EcoConcrete, pavers, bricks and blocks, precast units, and it provides <span class="font-medium text-ink">services</span>, like soil stabilisation and building an entire road. Those are two different intents: buy a material, or hire a contractor. Folding them together would force every visitor through the half that did not apply to them.</p>
         <p>So Products and Services got their own dedicated pages, grouped under a What We Do menu with a separate Our Projects page carrying the proof. Each visitor self-selects in one click, and each offering gets room to be explained on its own terms.</p>
         <figure class="mt-6">
-          <div class="make p-6">
-            <p class="label mb-2">Infographic to create</p>
-            <p class="text-[0.95rem] text-ink/80">A split diagram: one path labelled <span class="bt">"I want to buy a material"</span> leading to Products, the other <span class="bt">"I want my road built"</span> leading to Services, both supported by Projects. Plus a simple sitemap of the full structure (Home, What We Do, Sustainability, About, Blog, Contact).</p>
-          </div>
+         
         </figure>
       </section>
  
@@ -204,17 +194,17 @@
       <section class="py-14 prose-body border-t border-line" id="calculator">
         <p class="kicker mb-3">The impact calculator</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Turning tonnes into trees</h2>
-        <p class="thi-tag mb-7">↳ THI · Design von MMI · Webtechnologien</p>
+        <p class="thi-tag mb-7"></p>
         <p>The calculator is the centre of the site, and the answer to the problem the research surfaced. Rather than tell a visitor that EcoConcrete saves carbon in general, it lets them describe their own project and shows what it would save in particular.</p>
         <p>A visitor picks a product, a solid block, paver, kerbstone, saucer drain, U-drain, precast slab, boundary wall panel, or precast road, optionally sets a grade from M7.5 to M40, enters dimensions and quantity, and calculates. It returns three figures against the traditional equivalent: CO2 saved, water saved, and industrial waste reused.</p>
         <figure class="mt-7">
           <div class="aspect-[16/10] bg-warm border-2 border-dashed border-line rounded-xl flex flex-col items-center justify-center text-muted gap-1">
-            <span class="label">Screenshot</span><span class="text-[12px]">the calculator input form (product, grade, dimensions, quantity)</span>
+            <img src="./ecopath_infographic3.png" alt="EcoPath calculator UI">
           </div>
         </figure>
         <figure class="mt-4">
           <div class="aspect-[16/10] bg-warm border-2 border-dashed border-line rounded-xl flex flex-col items-center justify-center text-muted gap-1">
-            <span class="label">Screenshot or short clip</span><span class="text-[12px]">the results: CO2, water, waste, then the real-world equivalences</span>
+            <img src="./ecopath_infographic4.png" alt="EcoPath calculator UI">
           </div>
         </figure>
       </section>
@@ -227,34 +217,24 @@
         <p>The reframe was to express the same figure in units people carry intuition for: trees planted in a year, kilometres of car travel avoided, smartphone charges, and days of household water for urban and rural homes. Nothing about the underlying number changes. What changes is whether the reader feels it. That single translation is what turns the calculator from an information widget into something persuasive, and it is the design idea I am most pleased with.</p>
         <figure class="mt-6">
           <div class="make p-6">
-            <p class="label mb-2">Infographic to create</p>
-            <p class="text-[0.95rem] text-ink/80">A before-and-after: on the left a flat figure (<span class="bt">"12 t CO2 saved"</span>); on the right the same value as icons, trees, a car with kilometres, water drops with days. Show the move from abstract to tangible. This is the signature graphic of the case study, worth the most effort.</p>
+            <img src="./ecopath_infographic5.png" alt="EcoPath calculator equivalences">
           </div>
         </figure>
-        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">If you tested it</p><p class="text-[0.98rem] text-ink/90">If you ever showed both versions to anyone and saw the equivalences land better, add that here. If not, this stands fine as design reasoning, just keep it framed that way.</p></div>
-      </section>
+       </section>
  
       <!-- BUILD -->
       <section class="py-14 prose-body border-t border-line" id="build">
         <p class="kicker mb-3">Build</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-2">Keeping a data tool simple on the surface</h2>
-        <p class="thi-tag mb-7">↳ THI · Webtechnologien</p>
+        <p class="thi-tag mb-7"></p>
         <p>The site runs on Django with a Postgres database, and Tailwind, HTML, and CSS on the front end. The calculator's per-product emission, water, and waste factors live on the backend, with the form and live results on the front end, so the visitor sees a few simple inputs while the comparison logic stays hidden. The wider site is a full build: the dedicated products, services, and projects pages, sustainability, about, a blog, and contact, with optimised imagery for performance.</p>
-        <figure class="mt-6">
-          <div class="make p-6">
-            <p class="label mb-2">Infographic to create</p>
-            <p class="text-[0.95rem] text-ink/80">A simple architecture diagram of the calculator: <span class="bt">inputs (form) → Django compares against a traditional baseline using per-product factors → outputs (CO2, water, waste) → equivalences</span>. Keep it three or four boxes, not a full system map.</p>
-          </div>
-        </figure>
-        <div class="impl mt-6 rounded-xl p-5"><p class="label mb-2">Confirm</p><p class="text-[0.98rem] text-ink/90">Adjust the stack and the calculator's data source to exactly how you built it, and add one genuinely interesting technical detail if there is one.</p></div>
-      </section>
+        </section>
  
       <!-- QUALITY -->
       <section class="py-14 prose-body border-t border-line" id="quality">
         <p class="kicker mb-3">Quality</p>
         <h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight mb-5">Making the numbers trustworthy</h2>
         <p>For a tool whose whole value is being believed, the quality bar is accuracy and clarity: the calculator's outputs have to be right and legible, and the site has to hold up responsively across devices and stay fast despite heavy imagery. That was the focus of testing.</p>
-        <div class="impl mt-4 rounded-xl p-5"><p class="label mb-2">Add if it applies</p><p class="text-[0.98rem] text-ink/90">If the figures were checked against EcoPath's engineering data, say so here, that is a strong credibility point. If you gathered any user or client feedback on the calculator, add it. Otherwise this can stay focused on accuracy and performance QA.</p></div>
       </section>
  
       <!-- IMPACT -->
@@ -284,8 +264,7 @@
         </div>
         <figure class="mt-5">
           <div class="make p-6">
-            <p class="label mb-2">Infographic to create</p>
-            <p class="text-[0.95rem] text-ink/80">An impact strip: the <span class="bt">TiE50 2026 badge</span>, the two project stat cards above, and the client logos (CoEvolve, Lodha, Indian Army, Bier Library, Agastya). One clean band that signals credibility at a glance.</p>
+            <img src="./ecopath_infographic6.png" alt="">  
           </div>
         </figure>
       </section>

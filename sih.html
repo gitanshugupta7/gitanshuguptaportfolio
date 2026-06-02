@@ -28,7 +28,7 @@
        re-theme the whole page (eyebrow, section numbers, quotes,
        buttons, accents). Keep it deep and rich, not bright.
        =========================================================== */
-    :root { --brand: #0e5c5b; }
+    :root { --brand: #FE9B00; }
  
     @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
     html { scroll-padding-top: 5rem; }
@@ -93,16 +93,16 @@
         <dl class="mt-10 grid grid-cols-2 sm:grid-cols-3 gap-y-7 gap-x-6">
           <div><dt class="label text-muted mb-1.5">Timeline</dt><dd class="text-[0.95rem]">Jan 2020 to Aug 2020</dd></div>
           <div><dt class="label text-muted mb-1.5">Role</dt><dd class="text-[0.95rem]">Full-stack developer, UX &amp; UI designer</dd></div>
-          <div><dt class="label text-muted mb-1.5">Platform</dt><dd class="text-[0.95rem]">Web (admin) plus WhatsApp &amp; Twitter</dd></div>
+          <div><dt class="label text-muted mb-1.5">Platform</dt><dd class="text-[0.95rem]">Web, WhatsApp &amp; Twitter</dd></div>
           <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Process</dt><dd class="text-[0.95rem]">Empirical research, socio-technical discovery, requirement analysis, service mapping, high-fidelity prototyping, empirical usability testing</dd></div>
-          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Postgres · Figma · Twilio API · Twitter API · Artificial Intelligence</dd></div>
+          <div class="col-span-2 sm:col-span-3"><dt class="label text-muted mb-1.5">Tech stack</dt><dd class="text-[0.95rem]">Django · Postgres · Adobe XD · Twilio API · Twitter API · Artificial Intelligence</dd></div>
         </dl>
       </header>
  
       <section class="py-14 prose-body" id="problem">
         <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">01</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">The Problem</h2></div>
         <p class="text-muted mb-1">Defining what needed to change and why it mattered.</p>
-        <p class="thi-tag mb-9">↳ THI · Studiendesign &amp; UX-Tests · Design von MMI</p>
+        <p class="thi-tag mb-9"></p>
  
         <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">Problem statement</h3></div>
         <p>The Government of Goa discovered that citizens rarely registered pothole complaints through official apps and websites, despite frequent public complaints on social media and in newspaper columns. They wanted to make a reporting system that citizens could use to report potholes, and that helped government agencies better navigate these complaints and address them.</p>
@@ -124,7 +124,7 @@
       <section class="py-14 prose-body border-t border-line" id="research">
         <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">02</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Research</h2></div>
         <p class="text-muted mb-1">What the field already knew, what others offered, and where the gap was.</p>
-        <p class="thi-tag mb-9">↳ THI · Gestaltung 1 · Studiendesign &amp; UX-Tests</p>
+        <p class="thi-tag mb-9"></p>
  
         <div class="rule flex items-center gap-4 mb-6"><h3 class="label whitespace-nowrap">Literature review</h3></div>
  
@@ -153,7 +153,7 @@
       <section class="py-14 prose-body border-t border-line" id="users">
         <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">03</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Understanding Users</h2></div>
         <p class="text-muted mb-1">Who we were designing for, and what we learned by talking to them.</p>
-        <p class="thi-tag mb-9">↳ THI · Studiendesign &amp; UX-Tests · Design von MMI</p>
+        <p class="thi-tag mb-9"></p>
  
         <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">User interviews</h3></div>
         <p><span class="font-medium text-ink">Method.</span> Semi-structured intercept interviews conducted in context, on the street, standing beside the potholes themselves, supplemented by stakeholder interviews with municipal officials who operate a comparable complaint system. 10 citizen participants and 2 officials, roughly 2 minutes each, all in person.</p>
@@ -198,7 +198,7 @@
       <section class="py-14 prose-body border-t border-line" id="ia">
         <div class="flex items-baseline gap-4 mb-2"><span class="sec-num font-display text-[1.6rem]">04</span><h2 class="font-display text-[2rem] sm:text-[2.4rem] leading-tight">Information Architecture &amp; System Design</h2></div>
         <p class="text-muted mb-1">How the solution is structured, and how the technical system supports it.</p>
-        <p class="thi-tag mb-9">↳ THI · Webdesign &amp; Webusability · Design von MMI</p>
+        <p class="thi-tag mb-9"></p>
  
         <div class="rule flex items-center gap-4 mb-5"><h3 class="label whitespace-nowrap">The core decision: no new app</h3></div>
         <p>Research pointed to a hard constraint. People wanted to report, but they did not want to install a government app, hand over images and storage permissions, or trust a new app with their data. So the central architectural decision was to build no citizen-facing app at all. Instead, the system met people on platforms they already used and already trusted: Twitter and WhatsApp. To the citizen, the product is almost invisible. The interface is a tweet or a chat they already know how to use, and all of the real machinery sits on the backend.</p>
@@ -226,9 +226,8 @@
           <span class="flow-arrow">→</span><span class="rounded-lg bg-warm border border-line px-3 py-2">Status update to reporters</span>
         </div>
         <figure class="mt-8">
-          <!-- replace with <img src="..." alt="System data flow diagram" loading="lazy"> -->
-          <div class="aspect-[16/9] bg-warm border border-dashed border-line rounded-xl flex items-center justify-center text-muted"><span class="label">System / data flow diagram (optional)</span></div>
-          <figcaption class="text-[12px] text-muted mt-2">Add your own diagram here, or the end-to-end flow you exported.</figcaption>
+          <img src="./sih-workflow.png" alt="A flow diagram showing the path of a report from Twitter or WhatsApp, through backend validation and grouping, to an official's action and back to the reporter as a status update." class="rounded-xl border border-line">
+          
         </figure>
  
         <div class="rule flex items-center gap-4 mb-5 mt-12"><h3 class="label whitespace-nowrap">Technical architecture</h3></div>

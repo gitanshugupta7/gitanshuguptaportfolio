@@ -34,7 +34,7 @@
        Each project card overrides --brand inline, so its accent
        bar, label, and hover all use that project's own color.
        =========================================================== */
-    :root { --brand: #0f5132; }
+    :root { --brand: #000000; }
  
     @media (prefers-reduced-motion: no-preference) {
       html { scroll-behavior: smooth; }
@@ -71,7 +71,7 @@
         <a href="#work" class="hover:text-ink transition-colors">Work</a>
         <a href="#about" class="hover:text-ink transition-colors">About</a>
         <a href="#contact" class="hover:text-ink transition-colors">Contact</a>
-        <a href="#" class="border border-line rounded-full px-4 py-1.5 text-ink hover:border-ink transition-colors">Résumé</a>
+        <a href="https://drive.google.com/file/d/12Q8M-t6XBH4ku25siOCujnQdWUZ7d_XZ/view?usp=sharing" target="_blank" class="border border-line rounded-full px-4 py-1.5 text-ink hover:border-ink transition-colors">Résumé</a>
       </div>
       <button id="menuBtn" class="md:hidden p-2 -mr-2 text-ink" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
@@ -111,15 +111,15 @@
       <div class="rule flex items-center gap-5 mb-10"><h2 class="label whitespace-nowrap">Selected work</h2></div>
  
       <!-- FEATURED. Change style="--brand:..." to set this project's color. -->
-      <a href="sih.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#0e5c5b">
+      <a href="sih.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#FE9B00">
         <div class="brand-top h-1"></div>
         <div class="grid md:grid-cols-2">
           <!-- replace with <img src="..." alt="..." loading="lazy"> -->
-          <div class="aspect-[16/11] md:aspect-auto md:min-h-[340px] bg-warm border-b md:border-b-0 md:border-r border-dashed border-line flex items-center justify-center text-muted">
-            <span class="label">Cover image</span>
+          <div class="aspect-[16/11] md:aspect-auto md:min-h-[300px] border-b md:border-b-0 md:border-r border-dashed border-line flex items-center justify-center text-muted">
+            <span class="label"><img src="./SIH.png" alt=""></span> 
           </div>
           <div class="p-7 sm:p-10 flex flex-col justify-center">
-            <p class="cat label mb-3">Case study · 2020</p>
+            <p class="cat label mb-3">Case study</p>
             <h3 class="brand-title font-display text-[1.7rem] sm:text-[2rem] leading-tight transition-colors">Pothole Redressal System</h3>
             <p class="mt-4 text-[1rem] leading-relaxed text-muted">
               A zero-friction way for citizens to report potholes through platforms they already trust, paired with a tool that helps municipal officials track, group, and resolve every complaint.
@@ -140,36 +140,36 @@
       </a>
  
       <div class="grid sm:grid-cols-2 gap-6 mt-6">
-        <a href="moneyseth.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#2a3568">
+        <a href="moneyseth.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#0093D4">
           <div class="brand-top h-1"></div>
-          <div class="aspect-[16/10] bg-warm border-b border-dashed border-line flex items-center justify-center text-muted"><span class="label">Cover image</span></div>
+          <div class="aspect-[16/10] border-b border-dashed border-line flex items-center justify-center text-muted"><img src="./moneyseth.png" alt=""></div>
           <div class="p-6">
             <p class="cat label mb-3">Case study</p>
             <h3 class="brand-title font-display text-[1.4rem] leading-tight transition-colors">MoneySeth</h3>
             <p class="mt-3 text-[0.95rem] leading-relaxed text-muted">A finance-education platform whose suite of calculators became the front door, with a focus on bonds most retail sites skip.</p>
           </div>
         </a>
-        <a href="ecopath.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#17411a">
+        <a href="ecopath.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#17411A">
           <div class="brand-top h-1"></div>
-          <div class="aspect-[16/10] bg-warm border-b border-dashed border-line flex items-center justify-center text-muted"><span class="label">Cover image</span></div>
+          <div class="aspect-[16/10] border-b border-dashed border-line flex items-center justify-center text-muted"><img src="./ecopath.png" alt=""></div>
           <div class="p-6">
             <p class="cat label mb-3">Case study</p>
             <h3 class="brand-title font-display text-[1.4rem] leading-tight transition-colors">EcoPath</h3>
             <p class="mt-3 text-[0.95rem] leading-relaxed text-muted">The website for a cement-free construction startup, built around a carbon calculator that makes a project's CO2 savings tangible.</p>
           </div>
         </a>
-        <a href="houseofshaarag.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#8a6a1f">
+        <a href="houseofshaarag.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#D4AF37">
           <div class="brand-top h-1"></div>
-          <div class="aspect-[16/10] bg-warm border-b border-dashed border-line flex items-center justify-center text-muted"><span class="label">Cover image</span></div>
+          <div class="aspect-[16/10] border-b border-dashed border-line flex items-center justify-center text-muted"><img src="./houseofshaaag.png" alt=""></div>
           <div class="p-6">
             <p class="cat label mb-3">Case study</p>
             <h3 class="brand-title font-display text-[1.4rem] leading-tight transition-colors">House of Shaarag</h3>
             <p class="mt-3 text-[0.95rem] leading-relaxed text-muted">The website for a bespoke interior design studio, designed so the site itself reads as the quiet luxury the studio sells.</p>
           </div>
         </a>
-        <a href="saanjhwellness.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#7c4a58">
+        <a href="saanjhwellness.html" class="brand-card group block border border-line rounded-2xl overflow-hidden" style="--brand:#4084E7">
           <div class="brand-top h-1"></div>
-          <div class="aspect-[16/10] bg-warm border-b border-dashed border-line flex items-center justify-center text-muted"><span class="label">Cover image</span></div>
+          <div class="aspect-[16/10] border-b border-dashed border-line flex items-center justify-center text-muted"><img src="./saanjhwellness.png" alt=""></div>
           <div class="p-6">
             <p class="cat label mb-3">Case study</p>
             <h3 class="brand-title font-display text-[1.4rem] leading-tight transition-colors">Saanjh Wellness</h3>
@@ -179,7 +179,7 @@
       </div>
     </section>
  
-    <section id="about" class="bg-warm border-y border-line">
+    <section id="about" class="border-y border-line">
       <div class="mx-auto max-w-content px-5 sm:px-8 py-16 sm:py-24">
         <div class="rule flex items-center gap-5 mb-10"><h2 class="label whitespace-nowrap">About</h2></div>
         <div class="grid md:grid-cols-3 gap-10 md:gap-14">
@@ -206,11 +206,11 @@
     <section id="contact" class="mx-auto max-w-content px-5 sm:px-8 py-20 sm:py-28 text-center">
       <p class="eyebrow mb-5">Get in touch</p>
       <h2 class="font-display text-[2rem] sm:text-[2.8rem] leading-tight max-w-2xl mx-auto">Have a project, a role, or a question? I would love to hear from you.</h2>
-      <a href="mailto:you@example.com" class="btn-brand mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-medium transition-colors">you@example.com</a>
+      <a class="btn-brand mt-8 inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-[15px] font-medium transition-colors">gitanshugupta7@gmail.com</a>
       <div class="mt-8 flex items-center justify-center gap-7 text-[14px] text-muted">
-        <a href="#" class="hover:text-ink transition-colors">GitHub</a>
-        <a href="#" class="hover:text-ink transition-colors">LinkedIn</a>
-        <a href="#" class="hover:text-ink transition-colors">Résumé</a>
+        <a href="https://github.com/gitanshugupta7" target="_blank" class="hover:text-ink transition-colors">GitHub</a>
+        <a href="https://www.linkedin.com/in/gitanshu-gupta-83aa12157/" target="_blank" class="hover:text-ink transition-colors">LinkedIn</a>
+        <a href="https://drive.google.com/file/d/12Q8M-t6XBH4ku25siOCujnQdWUZ7d_XZ/view?usp=sharing" target="_blank" class="hover:text-ink transition-colors">Résumé</a>
       </div>
     </section>
   </main>
